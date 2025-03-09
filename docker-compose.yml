@@ -46,6 +46,18 @@ services:
       - ./.docker/mysql/my.cnf:/etc/mysql/my.cnf
     networks:
       - laravel_project_network
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - 8081:80
+    environment:
+      - PMA_HOST=laravel_mysql
+      - MYSQL_ROOT_PASSWORD=password
+    networks:
+      - laravel_project_network
       
 volumes:
   laravel_project_storage:
